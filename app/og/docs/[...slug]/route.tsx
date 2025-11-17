@@ -2,7 +2,6 @@ import { getPageImage, source } from "@/lib/source";
 import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { generate as DefaultImage } from "fumadocs-ui/og";
-import Image from "next/image";
 
 export const revalidate = false;
 
@@ -20,14 +19,7 @@ export async function GET(
         title={page.data.title}
         description={page.data.description}
         site="Moydus"
-        icon={
-          <Image
-            src="/logo/Docs-moydus.png"
-            alt="Moydus"
-            width={100}
-            height={100}
-          />
-        }
+        icon="https://docs.moydus.com/logo/Docs-moydus.png"
       />
     ),
     {

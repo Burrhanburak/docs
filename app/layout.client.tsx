@@ -61,3 +61,45 @@ export function FumadocsIcon(props: React.SVGProps<SVGSVGElement>) {
     />
   );
 }
+
+export function Logo() {
+  const [isDark, setIsDark] = useState(false);
+
+  useEffect(() => {
+    const checkTheme = () => {
+      if (typeof window !== "undefined") {
+        const isDarkMode =
+          document.documentElement.classList.contains("dark") ||
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+        setIsDark(isDarkMode);
+      }
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver(checkTheme);
+    if (typeof window !== "undefined") {
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <>
+      <Image
+        alt="Moydus"
+        src={isDark ? "/light-moydus.svg" : "/dark-moydus.svg"}
+        sizes="100px"
+        width={100}
+        height={40}
+        className="hidden w-22 in-[.uwu]:block"
+        aria-label="Moydus"
+      />
+      <FumadocsIcon className="size-5 in-[.uwu]:hidden" />
+    </>
+  );
+}

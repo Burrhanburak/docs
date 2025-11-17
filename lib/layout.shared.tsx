@@ -17,23 +17,7 @@ import {
 } from "lucide-react";
 import { HelpCircle } from "lucide-react";
 import { GitCompare } from "lucide-react";
-import Logo from "@/public/dark-moydus.svg";
-import Image from "next/image";
-import { FumadocsIcon } from "@/app/layout.client";
-import Link from "next/link";
-
-export const logo = (
-  <>
-    <Image
-      alt="Moydus"
-      src={Logo}
-      sizes="100px"
-      className="hidden w-22 in-[.uwu]:block"
-      aria-label="Moydus"
-    />
-    <FumadocsIcon className="size-5 in-[.uwu]:hidden" />
-  </>
-);
+import { FumadocsIcon, Logo } from "@/app/layout.client";
 export const linkItems: LinkItemType[] = [
   {
     icon: <AlbumIcon />,
@@ -141,7 +125,7 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: (
         <>
-          {logo}
+          <Logo />
           <span className="font-medium in-[.uwu]:hidden in-[header]:text-[15px]">
             Moydus
           </span>
