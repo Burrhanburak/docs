@@ -1,13 +1,14 @@
-import { getPageImage, source } from '@/lib/source';
-import { notFound } from 'next/navigation';
-import { ImageResponse } from 'next/og';
-import { generate as DefaultImage } from 'fumadocs-ui/og';
+import { getPageImage, source } from "@/lib/source";
+import { notFound } from "next/navigation";
+import { ImageResponse } from "next/og";
+import { generate as DefaultImage } from "fumadocs-ui/og";
+import Image from "next/image";
 
 export const revalidate = false;
 
 export async function GET(
   _req: Request,
-  { params }: RouteContext<'/og/docs/[...slug]'>,
+  { params }: RouteContext<"/og/docs/[...slug]">
 ) {
   const { slug } = await params;
   const page = source.getPage(slug.slice(0, -1));
@@ -18,13 +19,21 @@ export async function GET(
       <DefaultImage
         title={page.data.title}
         description={page.data.description}
-        site="My App"
+        site="Moydus"
+        icon={
+          <Image
+            src="/logo/Docs-moydus.png"
+            alt="Moydus"
+            width={100}
+            height={100}
+          />
+        }
       />
     ),
     {
       width: 1200,
       height: 630,
-    },
+    }
   );
 }
 

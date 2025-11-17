@@ -1,3 +1,32 @@
-@import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
-@import 'fumadocs-ui/css/preset.css';
+@import "tailwindcss";
+@import "fumadocs-ui/css/neutral.css";
+@import "fumadocs-ui/css/preset.css";
+
+/* Navbar menüsünü her zaman açık tut ve başlığı bold yap */
+nav [data-menu-content],
+nav [data-radix-popper-content-wrapper] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: static !important;
+  transform: none !important;
+}
+
+nav [data-menu-trigger] {
+  font-weight: 700 !important;
+  font-size: 0.875rem !important;
+}
+
+nav [data-menu-trigger][aria-expanded="false"] + [data-menu-content],
+nav [data-menu-trigger][aria-expanded="false"] ~ [data-menu-content] {
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  position: static !important;
+  transform: none !important;
+}
+
+/* Dropdown arrow'u gizle */
+nav [data-menu-trigger] svg[data-chevron] {
+  display: none !important;
+}
