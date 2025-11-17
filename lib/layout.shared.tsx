@@ -18,6 +18,7 @@ import {
 import { HelpCircle } from "lucide-react";
 import { GitCompare } from "lucide-react";
 import { FumadocsIcon, Logo } from "@/app/layout.client";
+
 export const linkItems: LinkItemType[] = [
   {
     icon: <AlbumIcon />,
@@ -131,6 +132,7 @@ export function baseOptions(): BaseLayoutProps {
           </span>
         </>
       ),
+      url: "/docs",
     },
   };
 }

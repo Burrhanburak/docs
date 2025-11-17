@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import { type ReactNode, useEffect, useState } from "react";
 import { cn } from "fumadocs-ui/utils/cn";
 import Image from "next/image";
+import Link from "next/link";
 
 export function Body({
   children,
@@ -99,6 +100,7 @@ export function Logo() {
         className="hidden w-22 in-[.uwu]:block"
         aria-label="Moydus"
       />
+
       <FumadocsIcon className="size-5 in-[.uwu]:hidden" />
     </>
   );
