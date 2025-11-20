@@ -45,7 +45,7 @@ export function WebsiteSchema() {
 export function WebPageSchema({
   url = "https://docs.moydus.com",
   name = "Moydus Docs",
-  description = "Full-service documentation for web development, SaaS, automation, SEO, branding, panel management, and custom software.",
+  description = "Documentation for web development, SaaS, automation and SEO.",
 }: {
   url?: string;
   name?: string;
@@ -61,10 +61,7 @@ export function WebPageSchema({
           url,
           name,
           description,
-          isPartOf: {
-            "@type": "WebSite",
-            url: "https://docs.moydus.com",
-          },
+          isPartOf: { "@type": "WebSite", url: "https://docs.moydus.com" },
         }),
       }}
     />
@@ -79,9 +76,9 @@ export function BreadcrumbSchema({ items }: { items: Array<{ name: string; url: 
         __html: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "BreadcrumbList",
-          itemListElement: items.map((item, index) => ({
+          itemListElement: items.map((item, i) => ({
             "@type": "ListItem",
-            position: index + 1,
+            position: i + 1,
             name: item.name,
             item: item.url,
           })),
@@ -101,7 +98,7 @@ export function AIPageSchema() {
           "@type": "AIPage",
           name: "Moydus Docs",
           description:
-            "Technical documentation for Moydus covering web development, SaaS, marketing, automation, and software architecture.",
+            "Technical documentation for Moydus: SaaS, automation, panel management, SEO and development.",
           topics: [
             "Web Development",
             "SaaS",
@@ -115,4 +112,3 @@ export function AIPageSchema() {
     />
   );
 }
-

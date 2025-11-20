@@ -2,14 +2,17 @@ import type { Metadata } from "next/types";
 import { InferPageType } from "fumadocs-core/source";
 import { source } from "./source";
 
+export const baseUrl = "https://docs.moydus.com";
+
 export function createMetadata(override: Metadata): Metadata {
-  const baseUrl = "https://docs.moydus.com";
+
   const defaultTitle =
     override.title?.toString() ||
     "Moydus Docs – Complete Guide to Web Design, SaaS Development & Automation Services";
+
   const defaultDescription =
     override.description?.toString() ||
-    "Discover Moydus Docs – your comprehensive resource for web development, custom SaaS platforms, automation solutions, panel management, UI/UX design, SEO services, and digital transformation.";
+    "Discover Moydus Docs – your comprehensive resource for web development, SaaS platforms, automation solutions, panel management, UI/UX, SEO and digital transformation.";
 
   return {
     ...override,
@@ -19,17 +22,16 @@ export function createMetadata(override: Metadata): Metadata {
     keywords: [
       "Moydus",
       "Moydus Docs",
-      "Moydus Documentation",
-      "Moydus Agency",
-      "Web Design Agency",
+      "Web Design",
       "SaaS Development",
-      "Panel Management",
-      "Custom Software",
-      "Automation Services",
-      "Marketing & SEO",
-      "Branding UI/UX",
-      "Moydus Guide",
-      ...(override.keywords ? (Array.isArray(override.keywords) ? override.keywords : [override.keywords]) : []),
+      "Automation",
+      "UI/UX",
+      "SEO",
+      ...(override.keywords
+        ? Array.isArray(override.keywords)
+          ? override.keywords
+          : [override.keywords]
+        : []),
     ],
     authors: [{ name: "Moydus" }],
     creator: "Moydus",
@@ -73,15 +75,15 @@ export function createMetadata(override: Metadata): Metadata {
     },
     alternates: {
       canonical: baseUrl,
-      types: {
-        "application/rss+xml": [
-          {
-            title: "Moydus Blog",
-            url: "https://moydus.com/blog/rss.xml",
-          },
-        ],
-      },
       ...override.alternates,
+    },
+    icons: {
+      icon: [
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
     },
     verification: {
       google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
@@ -93,15 +95,8 @@ export function createMetadata(override: Metadata): Metadata {
 
 export function getPageImage(page: InferPageType<typeof source>) {
   const segments = [...page.slugs, "image.webp"];
-
   return {
     segments,
     url: `/og/${segments.join("/")}`,
   };
 }
-
-export const baseUrl =
-  process.env.NODE_ENV === "development" ||
-  !process.env.VERCEL_PROJECT_PRODUCTION_URL
-    ? new URL("http://localhost:3000")
-    : new URL(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
